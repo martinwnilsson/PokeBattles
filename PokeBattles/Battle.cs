@@ -20,24 +20,29 @@ public class Battle
         Pokemon winner = null;
 
         Console.WriteLine(); 
-        Console.WriteLine("Battle " + name + " startar mellan " + pokemon1.Name + " och " + pokemon2.Name);
-        Console.WriteLine();
+        Console.WriteLine("Battle " + name + " startar mellan " + pokemon1.name + " och " + pokemon2.name);
+        Console.WriteLine("---");
+        Console.WriteLine("Stats:");
         pokemon1.PrintInfo();
-        pokemon1.PrintInfo();
-        Console.WriteLine();
+        pokemon2.PrintInfo();
+        Console.WriteLine("---");
+        Console.WriteLine("Fight!");
         // fight until one pokemon's health is 0 or less
 
         while (pokemon1.health > 0 && pokemon2.health > 0)
         {
+            Console.WriteLine();
+            Console.WriteLine("Tryck på en tangent för nästa runda...");
+            Console.ReadLine();
             // pok2 slår pok1
-            Console.WriteLine(pokemon2.Name + " slår " + pokemon1.Name + " med " + pokemon2.damage);
+            Console.WriteLine(pokemon2.name + " slår " + pokemon1.name + " med " + pokemon2.damage);
             pokemon1.health = pokemon1.health - pokemon2.damage;
-            Console.WriteLine(pokemon1.Name + " har " + pokemon1.health + " kvar ");
+            Console.WriteLine(pokemon1.name + " har " + pokemon1.health + " hälsa kvar ");
 
             // pok1 slår pok2
-            Console.WriteLine(pokemon1.Name + " slår " + pokemon2.Name + " med " + pokemon1.damage);
+            Console.WriteLine(pokemon1.name + " slår " + pokemon2.name + " med " + pokemon1.damage);
             pokemon2.health = pokemon2.health - pokemon1.damage;
-            Console.WriteLine(pokemon2.Name + " har " + pokemon2.health + " kvar ");
+            Console.WriteLine(pokemon2.name + " har " + pokemon2.health + " hälsa kvar ");
 
             if(pokemon1.health <= 0)
             {
@@ -50,7 +55,12 @@ public class Battle
         }
         if (winner != null)
         {
-            //Console.WriteLine("Vinnaren är " + winner.Name);
+            Console.WriteLine();
+            Console.WriteLine("Vinnaren är " + winner.name);
+            winner.FullHeal();
+            Console.WriteLine();
+            Console.WriteLine("Tryck på en tangent för att fortsätta...");
+            Console.ReadLine();
         }
         return winner;
     }
